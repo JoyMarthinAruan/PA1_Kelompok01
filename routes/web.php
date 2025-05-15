@@ -28,15 +28,14 @@ use App\Http\Controllers\Frontend\StructureOrganizationController as FrontendStr
 // Frontend Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/news', [FrontendNewsController::class, 'index'])->name('news');
-Route::get('/news/{id}', [FrontendNewsController::class, 'show'])->name('news1');
+Route::get('/news/{id}', [FrontendNewsController::class, 'show'])->name('newsdetail');
 Route::get('/testimoni', [FrontendTestimonialController::class, 'index'])->name('testimoni');
 Route::get('/collaborate', [FrontendCollaborateController::class, 'index'])->name('collaborate');
 Route::get('/prestasi', [FrontendAchievementController::class, 'index'])->name('prestasi');
 Route::get('/metaprofile', [FrontendMetaProfileController::class, 'index'])->name('metaprofile');
 Route::get('/curriculum', [FrontendMetaProfileController::class, 'curriculum'])->name('curriculum');
-Route::get('/structureorganization', [FrontendStructureOrganizationController::class, 'index'])->name('structure_organization');
 Route::get('/lecturer', [FrontendMetaProfileController::class, 'lecturer'])->name('lecturer');
-Route::get('/facility/{type}', [FrontendFacilityController::class, 'index'])->name('facility');
+Route::get('/facility', [FrontendFacilityController::class, 'index'])->name('facility');
 Route::get('/laboratory', [FrontendLaboratoryController::class, 'index'])->name('laboratory');
 Route::get('/achievements/publication', [FrontendAchievementController::class, 'publication'])->name('achievements.publication');
 Route::get('/achievements/research', [FrontendAchievementController::class, 'research'])->name('achievements.research');

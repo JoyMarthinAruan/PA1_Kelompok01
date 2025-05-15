@@ -15,7 +15,5 @@
         <div class="content">
             {!! $newsItem->content !!}
         </div>
-
-
     </div>
 @endsection

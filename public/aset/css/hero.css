@@ -1,688 +1,123 @@
-.hero-section {
-    position: relative;
-    width: 100%;
-    height: 400px;
-    overflow: hidden;
-}
+/* Add to existing CSS */
 
-.hero {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.hero img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    /* Warna teks utama */
-    text-align: left;
-    width: 80%;
+/* Character Container */
+.character-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.left-text {
-    font-size: 2.5em;
-    font-weight: bold;
-    line-height: 1.2;
-    color: white;
-    /* Pastikan teks kiri berwarna putih */
-}
-
-.left-text span {
-    display: block;
-    font-size: 0.8em;
-    font-weight: normal;
-    color: white;
-    /* Warna teks IT DEL */
-}
-
-.right-text {
-    font-size: 1.1em;
-    line-height: 1.6;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 5px;
-    max-width: 50%;
-    color: white;
-    /* Warna teks deskripsi kanan */
-}
-
-.news-container {
-    padding: 15px;
-}
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-}
-
-.col-lg-3,
-.col-md-4,
-.col-sm-6 {
-    padding: 10px;
-    /* Spacing around cards */
-}
-
-.news-card {
-    border: 3px solid #7f8d97;
-    /* Thicker border for definition */
-    border-radius: 12px;
-    /* More rounded corners */
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    /* Enhanced shadow */
-    text-align: center;
-    /* Center text */
-    transition: transform 0.2s;
-}
-
-.news-card:hover {
-    transform: translateY(-5px);
-    /* Lift card on hover */
-}
-
-.news-image-container {
-    width: 100%;
-    height: 100%;
-    aspect-ratio: 1;
-
-}
-
-.news-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.news-title {
-    padding: 12px;
-    /* Increased padding */
-    font-size: 1rem;
-    /* Bigger font size */
-    font-weight: bold;
-    color: #333;
-}
-
-.btn-outline-primary {
-    color: #007bff;
-    border: 2px solid #007bff;
-    font-size: 1rem;
-    /* Slightly bigger text */
-    padding: 8px 16px;
-    /* Slightly bigger padding */
-}
-
-.btn-outline-primary:hover {
-    background-color: #007bff;
-    color: #ffff;
-    border-color: #007bff;
-}
-
-.row.justify-content-center {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-    /* Jarak antar kartu */
-}
-
-/* Kartu Testimoni */
-.testimonial-card {
-    width: calc(33.33% - 40px);
-    max-width: 350px;
-    background: #ffff;
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
-    margin: 15px;
-    border: 2px solid #7f8d97;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-}
-
-@media (max-width: 992px) {
-    .testimonial-card {
-        width: calc(50% - 40px);
-        /* 2 kartu per baris */
-    }
-}
-
-@media (max-width: 600px) {
-    .testimonial-card {
-        width: 100%;
-        /* 1 kartu per baris di layar kecil */
-    }
-}
-
-h3.text-center {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 2rem;
-    color: #333;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.testimonial-header {
-    width: 100%;
-    background: #ffffff;
-    border: 1px solid #0e0e0e;
-    border-radius: 100px;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.testimonial-info {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #000;
-    padding: 8px 0 3px 0;
-    font-family: 'Encode Sans Semi Condensed', sans-serif;
-}
-
-.job {
-    font-size: 0.9rem;
-    font-weight: normal;
-    font-family: 'Encode Sans Semi Condensed', 'bold' sans-serif;
-    color: #000;
-    text-align: center;
-    margin-top: 0;
-    padding-bottom: 8px;
-    /* Adjust padding */
-}
-
-/* Gambar Testimoni */
-.testimonial-image-wrapper {
-    width: 150px;
-    /* Adjust image size */
-    height: 150px;
-    /* Adjust image size */
-    border-radius: 15px;
-    overflow: hidden;
-    margin: 10px 0;
-    /* Adjust margin */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.testimonial-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border: 2px solid #aaa;
-    border-radius: 15px;
-}
-
-.testimonial-content {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #333;
-    text-align: justify;
-    padding: 10px;
-    margin-top: 10px;
-}
-
-
-.row.justify-content-center {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    /* Tetap menjaga agar berada di tengah jika tidak cukup ruang */
-}
-
-/* Isi Review */
-.testimonial-content {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #333;
-    text-align: justify;
-    padding: 10px 15px;
-}
-
-/* Bagian utama */
-.info-section {
-    background-color: #ffff;
-    padding: 40px 0;
-    text-align: center;
-    position: relative;
-}
-
-/* Container utama */
-.info-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px;
-    border: 3px solid #7f8d97;
-    border-radius: 5px;
-    position: relative;
-    background: #ffff;
-}
-
-/* Judul di atas container */
-.info-title {
-    font-size: 1.1em;
-    display: inline-block;
-    background-color: #0A76BC;
-    color: #ffff;
-    padding: 10px 25px;
-    border-radius: 20px;
-    position: absolute;
-    top: -18px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* Kontainer dalam */
-.info-content {
-    border: 3px solid #7f8d97;
-    padding: 30px;
-    border-radius: 5px;
-}
-
-/* Tombol */
-.info-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 400px;
-}
-
-.info-button {
-    display: inline-block;
-    background-color: #0A76BC;
-    color: #ffff;
-    padding: 10px 25px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 0.9em;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    transition: 0.3s ease-in-out;
-}
-
-.info-button:hover {
-    background-color: #085a8f;
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-}
-
-.kerjasama {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* ===== IMPORT FONT ===== */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-/* ===== GLOBAL STYLES ===== */
-* {
-    font-family: 'Poppins', sans-serif;
-    color: black;
-    /* Semua teks menjadi hitam */
-}
-
-/* ===== FAKULTAS TITLE ===== */
-.fakultas-title {
-    text-align: center;
-    padding: 10px;
-    font-family: 'Poppins', sans-serif;
-}
-
-.fakultas-title .baris-1,
-.fakultas-title .baris-2 {
-    font-size: 18px;
-    font-weight: 400;
-    /* Tidak terlalu tebal */
-    letter-spacing: 0.5px;
-    /* Spasi antar huruf */
-    text-transform: uppercase;
-    /* Semua huruf kapital */
-    color: black;
-    line-height: 1.6;
-}
-
-/* ===== FOOTER BOTTOM (WARNA BIRU) ===== */
-.footer-bottom {
-    background-color: #0A76BC;
-    padding: 40px 60px;
-}
-
-/* ===== FOOTER CONTAINER (GRID DALAM FOOTER) ===== */
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 40px;
-}
-
-/* ===== FOOTER LEFT SIDE (LOGO & TITLE) ===== */
-.footer-left {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    max-width: 600px;
-    gap: 50px;
-    padding-left: 100px;
-    /* Tambahkan padding kiri */
-}
-
-.logo-original {
-    width: 150px;
+.character {
+    width: 200px;
     height: auto;
-    filter: none;
 }
 
-.footer-title h3 {
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.5;
-    margin: 0;
-}
-
-/* ===== FOOTER RIGHT SIDE (KONTAK) ===== */
-.footer-right {
+/* Adjust Hero Section for Character */
+.right-side {
     flex: 1;
-    max-width: 500px;
-    font-size: 14px;
-    line-height: 1.7;
-    font-family: 'Poppins', sans-serif;
-    padding-left: 20px;
-    /* Memberi jarak dari kiri */
-}
-
-.footer-right h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 15px;
-    /* Memberi jarak ke isi berikutnya */
-}
-
-/* ===== LINK STYLE ===== */
-.footer-right a,
-.footer-link {
-    color: black;
-    text-decoration: none;
-}
-
-.footer-right a:hover,
-.footer-link:hover {
-    text-decoration: underline;
-}
-
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-.footer-top {
-    font-family: 'Poppins', sans-serif;
-    padding: 40px 60px;
-    color: black;
-    /* Menambahkan warna hitam untuk seluruh teks di .footer-top */
-}
-
-.footer-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    color: black;
-    /* Menambahkan warna hitam untuk seluruh teks di .footer-info */
-}
-
-.footer-item:first-child {
-    padding-left: 50px;
-    color: black;
-    /* Menambahkan warna hitam untuk seluruh teks di elemen pertama .footer-item */
-}
-
-
-.footer-item {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-    flex: 1;
-    min-width: 200px;
-    color: black;
-    /* Menambahkan warna hitam untuk seluruh teks di .footer-item */
-}
-
-.img-container img {
-    width: 65px;
-    height: 65px;
-    object-fit: contain;
-}
-
-.footer-item h4 {
-    margin: 0;
-    font-size: 14px;
-    font-weight: 600;
-    color: black;
-    /* Menambahkan warna hitam untuk teks di dalam elemen h4 */
-}
-
-
-.footer-item p {
-    margin: 4px 0 0 0;
-    font-size: 12px;
-    line-height: 1.4;
-    color: black;
-    /* Menambahkan warna hitam untuk teks di dalam elemen p */
-}
-
-/* Khusus Arrow Up */
-.arrow-up {
-    justify-content: flex-end;
-    margin-left: auto;
-    margin-right: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: black;
-    /* Menambahkan warna hitam untuk seluruh teks di .arrow-up */
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
-
-.custom-navbar-top {
-    background-color: #0A76BC;
-}
-
-.brand-custom {
-    display: flex;
-    align-items: center;
-}
-
-.logo-img {
-    height: 30px;
-    width: auto;
-    margin-right: 10px;
-}
-
-.divider {
-    color: white;
-    font-size: 1.5em;
-    margin-right: 10px;
-}
-
-.brand-text {
-    color: white;
+    padding: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+}
+
+.description-box {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.inform-box {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-style: italic;
+    text-align: center;
+}
+
+.button-box {
+    display: flex;
+    gap: 10px;
     justify-content: center;
 }
 
-.brand-title {
-    font-size: 0.85em;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    /* Medium, bukan bold */
-    letter-spacing: 0.5px;
-    margin-bottom: 2px;
-    color: #ffffff;
-}
-
-.brand-subtitle {
-    font-size: 0.65em;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    letter-spacing: 0.4px;
-    color: #f0f0f0;
-}
-
-.search-bar {
-    /* Changed from search-container to search-bar to match HTML */
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    /* Atur jarak antar elemen.  While gap is great, it might not be fully supported in all browsers. Consider margin for older support */
-}
-
-
-.search-input {
-    font-size: 0.8em;
-    padding: 0.3rem 0.75rem;
-    border-radius: 0.25rem 0 0 0.25rem;
-    border-right: none;
-    background-color: white;
-    color: #6c757d;
-    /* teks utama di dalam input */
-}
-
-.search-input::placeholder {
-    color: #6c757d;
-    /* abu-abu */
-    opacity: 1;
-    /* biar tetap terlihat jelas */
-}
-
-.search-button {
-    font-size: 0.8em;
-    padding: 0.3rem 0.75rem;
-    border-radius: 0 0.25rem 0.25rem 0;
-    border-left: none;
-    background-color: white;
-    color: #6c757d;
-    /* warna icon search */
-    border: 1px solid #ced4da;
-}
-
-/* Removed language button styling as requested */
-
-.nav-links-custom .nav-link {
-    font-size: 1em;
-    font-family: 'Playfair Display', serif;
-}
-
-/*PRESTASI*/
-.achievement-section {
-    margin-bottom: 5rem;
-}
-
-.publication-image {
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    box-shadow: none;
-}
-
-.achievement-title {
-    font-weight: bold;
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-}
-
-.achievement-description {
-    text-align: justify;
-    font-size: 1rem;
-    line-height: 1.7;
-}
-
-.achievement-btn {
-    margin-top: 1rem;
-}
-
-.text-justify {
-    text-align: justify;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
-header {
-    font-family: 'Poppins', sans-serif;
-}
-
-.image-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-}
-
-.dark-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    /* Transparan gelap */
-    z-index: 2;
-}
-
-.content-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 3;
-    padding: 20px;
-}
-
-.text-white {
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
     color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    width: 200px;
+    transition: background-color 0.3s ease;
 }
 
+.beasiswa {
+    background-color: #007bff;
+}
+
+.pmb {
+    background-color: #28a745;
+}
+
+.beasiswa:hover {
+    background-color: #0056b3;
+}
+
+.pmb:hover {
+    background-color: #218838;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-    .content-overlay h2 {
-        font-size: 36px;
+    .hero-text {
+        flex-direction: column;
+        text-align: center;
     }
 
-    .content-overlay p,
-    .content-overlay h3 {
-        font-size: 16px;
+    .title-container h1 {
+        font-size: 2rem;
+    }
+
+    .description-box,
+    .inform-box {
+        font-size: 1rem;
+    }
+
+    .character {
+        width: 150px;
+    }
+
+    .button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .button-box {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-text {
+        padding: 20px;
+    }
+
+    .title-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .description-box,
+    .inform-box {
+        font-size: 0.9rem;
+    }
+
+    .character {
+        width: 120px;
+    }
+
+    .button {
+        font-size: 0.9rem;
     }
 }

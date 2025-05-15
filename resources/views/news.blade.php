@@ -3,7 +3,9 @@
 @section('content')
     <div class="container all-news-page">
         <div class="breadcrumbs">
-            <a href="#">Home</a> / Semua Berita
+            <a href="{{ url('/') }}">Home</a>
+            <span style="margin: 0 10px;">/</span>
+            <span>Semua Berita</span>
         </div>
 
         <div class="main-content">
@@ -14,22 +16,18 @@
                             <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" class="news-image">
                         </div>
                         <div class="news-details">
-                            <a href="#">
+                            <a href="{{ route('newsdetail', $item->id) }}">
                                 <h3 class="news-title">{{ $item->title }}</h3>
                             </a>
                             <p class="news-excerpt">
-                                {{ Str::limit($item->content, 300, '...') }}
+                                {{ Str::limit($item->description, 300, '...') }}
                             </p>
-                            <p class="news-excerpt">
-                                {{ Str::limit($item->description, 400, '...') }}
-                                <a href="{{ route('news1', $item->id) }}" class="read-more">Lihat Selengkapnya</a>
-                            </p>
+                            <a href="{{ route('newsdetail', $item->id) }}" class="read-more">Lihat Selengkapnya</a>
 
-
-                            <div class="news-meta">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i>
+                            <div class="news-meta mt-2">
+                                <span><i class="far fa-calendar-alt"></i>
                                     {{ \Carbon\Carbon::parse($item->date)->format('d F Y') }}</span>
-                                <span class="news-author"><i class="far fa-user"></i> {{ $item->author }}</span>
+                                <span><i class="far fa-user"></i> {{ $item->author }}</span>
                             </div>
                         </div>
                     </div>
@@ -37,7 +35,9 @@
                     <p class="text-center">Belum ada berita.</p>
                 @endforelse
 
-                {{ $news->links() }} {{-- Tampilkan link paginasi --}}
+                <div class="mt-4">
+                    {{ $news->links() }}
+                </div>
             </div>
 
             <div class="sidebar">
@@ -45,15 +45,14 @@
                 <ul class="recent-news">
                     @foreach ($recentNews as $recent)
                         <li>
-                            <a href="#"><strong>{{ $recent->title }}</strong></a>
+                            <a href="{{ route('newsdetail', $recent->id) }}"><strong>{{ $recent->title }}</strong></a>
                             <span class="news-meta">
                                 <i class="far fa-calendar-alt"></i>
                                 {{ \Carbon\Carbon::parse($recent->date)->format('d F Y') }}
-                                <i class="far fa-user"></i> {{ $recent->author }}
+                                <i class="far fa-user ml-2"></i> {{ $recent->author }}
                             </span>
                         </li>
                     @endforeach
-                    <!-- More recent news items -->
                 </ul>
             </div>
         </div>

@@ -51,3 +51,24 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+function showModal(title, profil, deskripsi) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalProfil').innerText = profil;
+    document.getElementById('modalDeskripsi').innerText = deskripsi;
+
+    // Tampilkan modal
+    document.getElementById('popupModal').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('popupModal').style.display = 'none';
+}
+
+// Menutup modal jika klik di luar konten
+window.onclick = function (event) {
+    const modal = document.getElementById('popupModal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+}
+

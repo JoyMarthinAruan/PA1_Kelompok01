@@ -23,7 +23,6 @@ class Facility extends Model
     ];
 
     protected $casts = [
-        'type' => 'string',
         'academic_days' => 'array',
         'images' => 'array',
     ];

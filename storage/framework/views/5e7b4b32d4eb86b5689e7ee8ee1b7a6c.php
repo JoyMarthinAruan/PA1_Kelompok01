@@ -112,56 +112,52 @@
         <div class="row">
             <div class="col-md-10 offset-md-1">
                 <div class="mb-3">
-                    <h2 class="mb-0 fw-bold text-dark">Laboratorium</h2>
+                    <h2 class="mb-0 fw-bold text-dark">Dosen</h2>
                     <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal"
-                        data-bs-target="#modal-laboratory">
-                        <i class="fas fa-plus me-2"></i>Tambah Laboratorium
+                        data-bs-target="#modal-lecturer">
+                        <i class="fas fa-plus me-2"></i>Tambah Dosen
                     </button>
                 </div>
 
                 <div class="card">
                     <div class="card-body p-4">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered text-center" id="laboratoryTable">
+                            <table class="table table-striped table-bordered text-center" id="lecturerTable">
                                 <thead>
                                     <tr>
+                                        <th scope="col" style="width: 15%;">ID Karyawan</th>
                                         <th scope="col" style="width: 20%;">Nama</th>
-                                        <th scope="col" style="width: 25%;">Deskripsi</th>
-                                        <th scope="col" style="width: 15%;">Hari Akademik</th>
-                                        <th scope="col" style="width: 10%;">Jam Akademik</th>
-                                        <th scope="col" style="width: 10%;">Jam Kolaborasi</th>
-                                        <th scope="col" style="width: 10%;">Gambar</th>
-                                        <th scope="col" style="width: 20%;">Aksi</th>
+                                        <th scope="col" style="width: 20%;">Email</th>
+                                        <th scope="col" style="width: 10%;">Ruangan</th>
+                                        <th scope="col" style="width: 10%;">Foto</th>
+                                        <th scope="col" style="width: 25%;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $__currentLoopData = $laboratories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $laboratory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php $__currentLoopData = $lecturers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lecturer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
-                                            <td><?php echo e($laboratory->name); ?></td>
-                                            <td><?php echo e(Str::limit($laboratory->description, 100)); ?></td>
-                                            <td><?php echo e($laboratory->academic_days ? implode(', ', $laboratory->academic_days) : '-'); ?>
-
-                                            </td>
-                                            <td><?php echo e($laboratory->academic_hours ?? '-'); ?></td>
-                                            <td><?php echo e($laboratory->collaborative_hours ?? '-'); ?></td>
+                                            <td><?php echo e($lecturer->employee_id); ?></td>
+                                            <td><?php echo e($lecturer->name); ?></td>
+                                            <td><?php echo e($lecturer->email); ?></td>
+                                            <td><?php echo e($lecturer->room); ?></td>
                                             <td>
-                                                <?php if($laboratory->images && count($laboratory->images) > 0): ?>
-                                                    <img src="<?php echo e(asset('storage/' . $laboratory->images[0])); ?>"
-                                                        class="img-thumbnail" alt="Laboratory Image">
+                                                <?php if($lecturer->image): ?>
+                                                    <img src="<?php echo e(asset('storage/' . $lecturer->image)); ?>"
+                                                        class="img-thumbnail" alt="Lecturer Image">
                                                 <?php else: ?>
-                                                    <span class="text-muted">Tidak ada gambar</span>
+                                                    <span class="text-muted">Tidak ada foto</span>
                                                 <?php endif; ?>
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#modal-read-laboratory-<?php echo e($laboratory->id); ?>">
+                                                    data-bs-target="#modal-read-lecturer-<?php echo e($lecturer->id); ?>">
                                                     <i class="fas fa-eye"></i> Lihat
                                                 </button>
                                                 <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#modal-edit-laboratory-<?php echo e($laboratory->id); ?>">
+                                                    data-bs-target="#modal-edit-lecturer-<?php echo e($lecturer->id); ?>">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </button>
-                                                <form action="<?php echo e(route('admin.laboratory.destroy', $laboratory->id)); ?>"
+                                                <form action="<?php echo e(route('admin.lecturer.destroy', $lecturer->id)); ?>"
                                                     method="POST" class="d-inline">
                                                     <?php echo csrf_field(); ?> <?php echo method_field('DELETE'); ?>
                                                     <button type="submit" class="btn btn-danger btn-sm delete-btn">
@@ -171,42 +167,40 @@
                                             </td>
                                         </tr>
 
-                                        <!-- MODAL READ LABORATORY -->
-                                        <div class="modal fade" id="modal-read-laboratory-<?php echo e($laboratory->id); ?>"
-                                            tabindex="-1"
-                                            aria-labelledby="modal-read-laboratoryLabel-<?php echo e($laboratory->id); ?>"
+                                        <!-- MODAL READ LECTURER -->
+                                        <div class="modal fade" id="modal-read-lecturer-<?php echo e($lecturer->id); ?>" tabindex="-1"
+                                            aria-labelledby="modal-read-lecturerLabel-<?php echo e($lecturer->id); ?>"
                                             aria-hidden="true">
                                             <div class="modal-dialog modal-lg modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Detail Laboratorium</h5>
+                                                        <h5 class="modal-title">Detail Dosen</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <?php echo $__env->make('admin.laboratory.read', [
-                                                            'laboratory' => $laboratory,
+                                                        <?php echo $__env->make('admin.lecturer.read', [
+                                                            'lecturer' => $lecturer,
                                                         ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <!-- MODAL EDIT LABORATORY -->
-                                        <div class="modal fade" id="modal-edit-laboratory-<?php echo e($laboratory->id); ?>"
-                                            tabindex="-1"
-                                            aria-labelledby="modal-edit-laboratoryLabel-<?php echo e($laboratory->id); ?>"
+                                        <!-- MODAL EDIT LECTURER -->
+                                        <div class="modal fade" id="modal-edit-lecturer-<?php echo e($lecturer->id); ?>" tabindex="-1"
+                                            aria-labelledby="modal-edit-lecturerLabel-<?php echo e($lecturer->id); ?>"
                                             aria-hidden="true">
                                             <div class="modal-dialog modal-lg modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Edit Laboratorium</h5>
+                                                        <h5 class="modal-title">Edit Dosen</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <?php echo $__env->make('admin.laboratory.edit', [
-                                                            'laboratory' => $laboratory,
+                                                        <?php echo $__env->make('admin.lecturer.edit', [
+                                                            'lecturer' => $lecturer,
                                                         ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                                     </div>
                                                 </div>
@@ -222,16 +216,16 @@
         </div>
     </div>
 
-    <!-- MODAL ADD LABORATORY -->
-    <div class="modal fade" id="modal-laboratory" tabindex="-1" aria-labelledby="modal-laboratoryLabel" aria-hidden="true">
+    <!-- MODAL ADD LECTURER -->
+    <div class="modal fade" id="modal-lecturer" tabindex="-1" aria-labelledby="modal-lecturerLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Laboratorium</h5>
+                    <h5 class="modal-title">Tambah Dosen</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <?php echo $__env->make('admin.laboratory.create', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                    <?php echo $__env->make('admin.lecturer.create', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 </div>
             </div>
         </div>
@@ -246,7 +240,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#laboratoryTable').DataTable({
+            $('#lecturerTable').DataTable({
                 responsive: true,
                 pageLength: 10,
                 searching: false,
@@ -279,7 +273,7 @@
                 e.preventDefault();
                 const form = $(this).closest('form');
                 Swal.fire({
-                    title: 'Hapus Laboratorium?',
+                    title: 'Hapus Dosen?',
                     text: "Tindakan ini tidak dapat dibatalkan!",
                     icon: 'warning',
                     showCancelButton: true,
@@ -297,4 +291,4 @@
     </script>
 <?php $__env->stopPush(); ?>
 
-<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\MetalurgiITDEL\resources\views/admin/laboratory/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\MetalurgiITDEL\resources\views/admin/lecturer/index.blade.php ENDPATH**/ ?>

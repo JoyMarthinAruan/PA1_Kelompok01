@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
@@ -14,6 +12,10 @@
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             overflow: hidden;
+        }
+
+        .table {
+            margin-bottom: 0;
         }
 
         .table th {
@@ -55,12 +57,6 @@
             font-size: 0.85rem;
         }
 
-        .img-thumbnail {
-            border-radius: 8px;
-            max-width: 80px;
-            object-fit: cover;
-        }
-
         .badge {
             padding: 6px 12px;
             border-radius: 12px;
@@ -71,6 +67,27 @@
             border-radius: 12px;
             border: none;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            border-bottom: none;
+            padding: 20px 24px;
+        }
+
+        .modal-title {
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .title-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
         }
 
         @media (max-width: 768px) {
@@ -88,60 +105,54 @@
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-md-10 offset-md-1">
-                <div class="mb-3 title-container">
-                    <h2 class="mb-0 fw-bold text-dark">Kegiatan Mahasiswa</h2>
+                <div class="mb-3">
+                    <h2 class="mb-0 fw-bold text-dark">Kurikulum</h2>
                     <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal"
-                        data-bs-target="#modal-studentactivity">
-                        <i class="fas fa-plus me-2"></i>Tambah Kegiatan Mahasiswa
+                        data-bs-target="#modal-curriculum">
+                        <i class="fas fa-plus me-2"></i>Tambah Kurikulum
                     </button>
                 </div>
 
                 <div class="card">
                     <div class="card-body p-4">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered text-center" id="studentActivityTable">
+                            <table class="table table-striped table-bordered text-center" id="curriculumTable">
                                 <thead>
                                     <tr>
-                                        <th scope="col" style="width: 20%;">Judul</th>
-                                        <th scope="col" style="width: 25%;">Deskripsi</th>
-                                        <th scope="col" style="width: 15%;">Gambar</th>
-                                        <th scope="col" style="width: 10%;">Aktif</th>
+                                        <th scope="col" style="width: 20%;">Kode Mata Kuliah</th>
+                                        <th scope="col" style="width: 30%;">Nama Mata Kuliah</th>
+                                        <th scope="col" style="width: 10%;">Semester</th>
+                                        <th scope="col" style="width: 10%;">Credits (SKS)</th>
+                                        <th scope="col" style="width: 10%;">Status</th>
                                         <th scope="col" style="width: 20%;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($activities as $activity)
+                                    <?php $__currentLoopData = $curriculums; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $curriculum): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
-                                            <td>{{ $activity->title }}</td>
-                                            <td>{{ Str::limit($activity->description, 100) }}</td>
+                                            <td><?php echo e($curriculum->course_code); ?></td>
+                                            <td><?php echo e($curriculum->course_name); ?></td>
+                                            <td><?php echo e($curriculum->semester); ?></td>
+                                            <td><?php echo e($curriculum->credits); ?></td>
                                             <td>
-                                                @if ($activity->image)
-                                                    <img src="{{ asset('storage/' . $activity->image) }}"
-                                                        class="img-thumbnail" alt="Activity Image">
-                                                @else
-                                                    <span class="text-muted">Tidak ada gambar</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <span class="badge {{ $activity->is_active ? 'bg-success' : 'bg-danger' }}">
-                                                    {{ $activity->is_active ? 'Aktif' : 'Tidak Aktif' }}
+                                                <span
+                                                    class="badge <?php echo e($curriculum->status == 'aktif' ? 'bg-success' : 'bg-danger'); ?>">
+                                                    <?php echo e($curriculum->status == 'aktif' ? 'Aktif' : 'Tidak Aktif'); ?>
+
                                                 </span>
                                             </td>
-                                            <td>{{ $activity->createdBy?->name ?? 'Tidak ada' }}</td>
-                                            <td>{{ $activity->updatedBy?->name ?? 'Tidak ada' }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#modal-read-studentactivity-{{ $activity->id }}">
+                                                    data-bs-target="#modal-read-curriculum-<?php echo e($curriculum->id); ?>">
                                                     <i class="fas fa-eye"></i> Lihat
                                                 </button>
                                                 <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#modal-edit-studentactivity-{{ $activity->id }}">
+                                                    data-bs-target="#modal-edit-curriculum-<?php echo e($curriculum->id); ?>">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </button>
-                                                <form action="{{ route('admin.studentactivity.destroy', $activity->id) }}"
+                                                <form action="<?php echo e(route('admin.curriculum.destroy', $curriculum->id)); ?>"
                                                     method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
+                                                    <?php echo csrf_field(); ?> <?php echo method_field('DELETE'); ?>
                                                     <button type="submit" class="btn btn-danger btn-sm delete-btn">
                                                         <i class="fas fa-trash"></i> Hapus
                                                     </button>
@@ -149,76 +160,74 @@
                                             </td>
                                         </tr>
 
-                                        <!-- MODAL READ STUDENT ACTIVITY -->
-                                        <div class="modal fade" id="modal-read-studentactivity-{{ $activity->id }}"
+                                        <!-- MODAL READ CURRICULUM -->
+                                        <div class="modal fade" id="modal-read-curriculum-<?php echo e($curriculum->id); ?>"
                                             tabindex="-1"
-                                            aria-labelledby="modal-read-studentactivityLabel-{{ $activity->id }}"
+                                            aria-labelledby="modal-read-curriculumLabel-<?php echo e($curriculum->id); ?>"
                                             aria-hidden="true">
                                             <div class="modal-dialog modal-lg modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Detail Kegiatan Mahasiswa</h5>
+                                                        <h5 class="modal-title">Detail Kurikulum</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        @include('admin.studentactivity.read', [
-                                                            'activity' => $activity,
-                                                        ])
+                                                        <?php echo $__env->make('admin.curriculum.read', [
+                                                            'curriculum' => $curriculum,
+                                                        ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <!-- MODAL EDIT STUDENT ACTIVITY -->
-                                        <div class="modal fade" id="modal-edit-studentactivity-{{ $activity->id }}"
+                                        <!-- MODAL EDIT CURRICULUM -->
+                                        <div class="modal fade" id="modal-edit-curriculum-<?php echo e($curriculum->id); ?>"
                                             tabindex="-1"
-                                            aria-labelledby="modal-edit-studentactivityLabel-{{ $activity->id }}"
+                                            aria-labelledby="modal-edit-curriculumLabel-<?php echo e($curriculum->id); ?>"
                                             aria-hidden="true">
                                             <div class="modal-dialog modal-lg modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Edit Kegiatan Mahasiswa</h5>
+                                                        <h5 class="modal-title">Edit Kurikulum</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        @include('admin.studentactivity.edit', [
-                                                            'activity' => $activity,
-                                                        ])
+                                                        <?php echo $__env->make('admin.curriculum.edit', [
+                                                            'curriculum' => $curriculum,
+                                                        ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>
                         </div>
-                        {{ $activities->links() }} <!-- Pagination links -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- MODAL ADD STUDENT ACTIVITY -->
-    <div class="modal fade" id="modal-studentactivity" tabindex="-1" aria-labelledby="modal-studentactivityLabel"
-        aria-hidden="true">
+    <!-- MODAL ADD CURRICULUM -->
+    <div class="modal fade" id="modal-curriculum" tabindex="-1" aria-labelledby="modal-curriculumLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Kegiatan Mahasiswa</h5>
+                    <h5 class="modal-title">Tambah Kurikulum</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    @include('admin.studentactivity.create')
+                    <?php echo $__env->make('admin.curriculum.create', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
@@ -226,7 +235,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#studentActivityTable').DataTable({
+            $('#curriculumTable').DataTable({
                 responsive: true,
                 pageLength: 10,
                 searching: false,
@@ -235,31 +244,31 @@
                 info: false
             });
 
-            @if (session('success'))
+            <?php if(session('success')): ?>
                 Swal.fire({
                     icon: 'success',
                     title: 'Berhasil!',
-                    text: '{{ session('success') }}',
+                    text: '<?php echo e(session('success')); ?>',
                     timer: 2500,
                     showConfirmButton: false
                 });
-            @endif
+            <?php endif; ?>
 
-            @if (session('error'))
+            <?php if(session('error')): ?>
                 Swal.fire({
                     icon: 'error',
                     title: 'Error!',
-                    text: '{{ session('error') }}',
+                    text: '<?php echo e(session('error')); ?>',
                     timer: 2500,
                     showConfirmButton: false
                 });
-            @endif
+            <?php endif; ?>
 
             $('.delete-btn').on('click', function(e) {
                 e.preventDefault();
                 const form = $(this).closest('form');
                 Swal.fire({
-                    title: 'Hapus Kegiatan Mahasiswa?',
+                    title: 'Hapus Kurikulum?',
                     text: "Tindakan ini tidak dapat dibatalkan!",
                     icon: 'warning',
                     showCancelButton: true,
@@ -275,4 +284,6 @@
             });
         });
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\MetalurgiITDEL\resources\views/admin/curriculum/index.blade.php ENDPATH**/ ?>

@@ -20,157 +20,134 @@
 </head>
 
 <body id="top">
-
-
-    <!-- Navbar Atas -->
-    <nav class="navbar navbar-expand-lg custom-navbar-top fixed-top">
+    <nav class="navbar navbar-expand-lg custom-navbar-top fixed-top navbar-dark">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
                 <img src="{{ asset('aset/img/logo.png') }}" alt="Logo Del" class="logo-img">
                 <div class="divider"></div>
                 <div class="brand-text">
                     <div class="brand-title">TEKNIK METALURGI</div>
-                    <div class="brand-subtitle">Institut Teknologi Del</div>
+                    <div class="brand-subtitle">INSTITUT TEKNOLOGI DEL</div>
                 </div>
             </a>
-
-            <!-- Search Bar -->
-            <form class="d-flex ms-lg-3 mt-2 mt-lg-0 search-bar" role="search" action="{{ route('search') }}"
-                method="GET">
-                <input class="form-control search-input" type="search" placeholder="Cari Informasi" aria-label="Search"
-                    name="query">
-                <button class="btn search-button" type="submit">
-                    <i class="bi bi-search"></i>
-                </button>
-            </form>
-
-            <!-- Toggle Button (Mobile) -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNavPrimaryAndSecondary" aria-controls="navbarNavPrimaryAndSecondary"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <i class="bi bi-list" style="font-size: 1.5rem; color: white;"></i>
             </button>
-        </div>
-    </nav>
-
-    <!-- Navbar Bawah -->
-    <nav class="navbar navbar-expand-lg navbar-light navbar-secondary">
-        <div class="container">
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavPrimaryAndSecondary">
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNavPrimaryAndSecondary">
                 <ul class="navbar-nav nav-links-custom">
                     <li class="nav-item"><a class="nav-link" href="#beranda">Beranda</a></li>
-                    <!-- Dropdown Prestasi -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfil" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Profil
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ url('/metaProfile') }}">Profil Umum</a>
-                            </li>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfil">
+                            <li><a class="dropdown-item" href="{{ url('/metaprofile') }}">Profil Umum</a></li>
                             <li><a class="dropdown-item" href="{{ url('/curriculum') }}">Kurikulum</a></li>
                             <li><a class="dropdown-item" href="{{ url('/structure_organization') }}">Struktur
-                                    Organisasi</a>
+                                    Organisasi</a></li>
                             <li><a class="dropdown-item" href="{{ url('/lecturer') }}">Dosen Staff</a></li>
+                        </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPrestasi" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Prestasi
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownPrestasi">
+                            <li><a class="dropdown-item" href="{{ url('/achievements/publication') }}">Publikasi</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{{ url('/achievements/research') }}">Penelitian</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/achievements/achievement') }}">Pencapaian</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('facility') }}">Fasilitas</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#laboratorium">Laboratorium</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kegiatan">Kegiatan Prodi</a></li>
                 </ul>
-                </li>
-                <!-- Dropdown Prestasi -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Prestasi
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ url('/achievements/publication') }}">Publikasi</a>
-                        </li>
-                        <li><a class="dropdown-item" href="{{ url('/achievements/research') }}">Penelitian</a></li>
-                        <li><a class="dropdown-item" href="{{ url('/achievements/achievement') }}">Pencapaian</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item"><a class="nav-link" href="#fasilitas">Fasilitas</a></li>
-                <li class="nav-item"><a class="nav-link" href="#laboratorium">Laboratorium</a></li>
-                <li class="nav-item"><a class="nav-link" href="#kegiatan">Kegiatan Prodi</a></li>
-                </ul>
+                <form class="d-flex ms-auto mt-2 mt-lg-0 search-bar" role="search" action="{{ route('search') }}"
+                    method="GET">
+                    <input class="form-control search-input" type="search" placeholder="Cari Informasi"
+                        aria-label="Search" name="query">
+                    <button class="btn search-button" type="submit"><i class="bi bi-search"></i></button>
+                </form>
             </div>
         </div>
     </nav>
 
     <!-- As a heading -->
     @yield('content')
-    <!--Footer-->
-
-    <div class="footer-top">
-        <div class="footer-info">
-            <div class="footer-item">
-                <div class="img-container">
-                    <img src="{{ asset('aset/img/help circle.PNG') }}" alt="Chat Box Icon">
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-info">
+                <div class="footer-item">
+                    <div class="img-container">
+                        <img src="{{ asset('aset/img/help circle.PNG') }}" alt="Chat Box Icon">
+                    </div>
+                    <div>
+                        <h4>Chat Box</h4>
+                        <p>Jika ingin bertanya lebih lanjut,<br>dapat menghubungi</p>
+                    </div>
                 </div>
-                <div>
-                    <h4>Chat Box</h4>
-                    <p>Jika ingin bertanya lebih lanjut,<br>dapat menghubungi</p>
+                <div class="footer-item">
+                    <div class="img-container">
+                        <img src="{{ asset('aset/img/Clock.PNG') }}" alt="Hours Icon">
+                    </div>
+                    <div>
+                        <h4>Hours</h4>
+                        <p>08.00 am – 05.00 pm</p>
+                    </div>
                 </div>
-            </div>
-            <div class="footer-item">
-                <div class="img-container">
-                    <img src="{{ asset('aset/img/Clock.PNG') }}" alt="Hours Icon">
+                <div class="footer-item">
+                    <div class="img-container">
+                        <img src="{{ asset('aset/img/Pen tool.PNG') }}" alt="Review Icon">
+                    </div>
+                    <div>
+                        <h4>Review</h4>
+                        <p>Kami membutuhkan tanggapan anda<br>terhadap website kami</p>
+                    </div>
                 </div>
-                <div>
-                    <h4>Hours</h4>
-                    <p>08.00 am – 05.00 pm</p>
-                </div>
-            </div>
-            <div class="footer-item">
-                <div class="img-container">
-                    <img src="{{ asset('aset/img/Pen tool.PNG') }}" alt="Review Icon">
-                </div>
-                <div>
-                    <h4>Review</h4>
-                    <p>Kami membutuhkan tanggapan anda<br>terhadap website kami</p>
-                </div>
-            </div>
-            <div class="footer-item arrow-up">
-                <div class="img-container">
-                    <img src="{{ asset('aset/img/Icon.png') }}" alt="Arrow Up Icon">
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="footer-bottom">
-        <div class="footer-container">
-            <div class="footer-left">
-                <img src="{{ asset('aset/img/logo.png') }}" alt="Logo IT Del" class="logo-original">
-                <div class="footer-title">
-                    <div class="fakultas-title">
-                        <div class="baris-1">FAKULTAS TEKNOLOGI INDUSTRI <br> TEKNIK METALURGI</div>
-                        <div class="baris-2">INSTITUT TEKNOLOGI DEL</div>
+                <div class="footer-item arrow-up">
+                    <div class="img-container">
+                        <img src="{{ asset('aset/img/Icon.png') }}" alt="Arrow Up Icon">
                     </div>
                 </div>
             </div>
-            <div class="footer-right">
-                <h3>Kontak Kami</h3>
-                <p><i class="fas fa-phone"></i>+62 632 331234</p>
-                <p><i class="fab fa-instagram"></i>
-                    <a href="https://www.instagram.com/metalurgidel?igsh=Y2Y4M3pqancxdHdn"
-                        target="_blank">metalurgidel</a>
-                </p>
-                <p><i class="fas fa-map-marker-alt"></i> Institut Teknologi Del Jl. Sisingamangaraja,<br>
-                    Sitoluama Laguboti, Toba Samosir Sumatera Utara, Indonesia</p>
-                <p><i class="fas fa-envelope"></i>
-                    <a href="mailto:info@del.ac.id" class="footer-link">info@del.ac.id</a>
-                </p>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-container">
+                <div class="footer-left">
+                    <img src="{{ asset('aset/img/logo.png') }}" alt="Logo IT Del" class="logo-original">
+                    <div class="footer-title">
+                        <div class="fakultas-title">
+                            <div class="baris-1">FAKULTAS TEKNOLOGI INDUSTRI <br> TEKNIK METALURGI</div>
+                            <div class="baris-2">INSTITUT TEKNOLOGI DEL</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-right">
+                    <h3>Kontak Kami</h3>
+                    <p><i class="fas fa-phone"></i> +62 632 331234</p>
+                    <p><i class="fab fa-instagram"></i> <a
+                            href="https://www.instagram.com/metalurgidel?igsh=Y2Y4M3pqancxdHdn"
+                            target="_blank">metalurgidel</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> Institut Teknologi Del Jl. Sisingamangaraja,<br>Sitoluama
+                        Laguboti, Toba Samosir Sumatera Utara, Indonesia</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@del.ac.id"
+                            class="footer-link">info@del.ac.id</a></p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px; color: #ccc; font-size: 0.9rem;">
+                Dibuat oleh Kelompok 1 PA 1 D3TI 2024
             </div>
         </div>
-
-        <!-- Tambahan credit di bawah -->
-        <div style="text-align: center; margin-top: 30px; color: #ccc; font-size: 0.9rem;">
-            Dibuat oleh Kelompok 1 PA 1 D3TI 2024
-        </div>
-    </div>
+    </footer>
 
 
 

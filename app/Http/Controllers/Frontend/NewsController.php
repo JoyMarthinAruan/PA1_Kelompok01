@@ -20,6 +20,6 @@ class NewsController extends Controller
     {
         $newsItem = News::findOrFail($id);
 
-        return view('news1', compact('newsItem'));
+        return view('newsdetail', compact('newsItem'));
     }
 }

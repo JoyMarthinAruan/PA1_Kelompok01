@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 
 class FacilityController extends Controller
 {
-    public function index(Request $request, $type)
+    public function index()
     {
-        $facilities = Facility::where('type', $type)->get();
-        return view('facility', compact('facilities', 'type'));
+        // Fetch all facilities and group by type
+        $facilities = Facility::all()->groupBy('type');
+
+        return view('facility', compact('facilities'));
     }
 }
