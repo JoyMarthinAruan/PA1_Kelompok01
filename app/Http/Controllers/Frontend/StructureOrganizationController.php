@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\StructureOrganization;
 use Illuminate\Http\Request;
 
-class Structure_OrganizationController extends Controller
+class StructureOrganizationController  extends Controller
 {
     /**
      * Display the organizational structure.

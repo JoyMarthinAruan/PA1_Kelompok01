@@ -14,3 +14,4 @@ class CurriculumController extends Controller
         return view('frontend.curriculum.index', compact('curriculums'));
     }
 }
+
